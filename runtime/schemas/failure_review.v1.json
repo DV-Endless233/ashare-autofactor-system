@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"factor.failure_review.v1","type":"object","additionalProperties":false,
+  "required":["failure_class","stop_decision","continuation","next_action"],
+  "properties":{
+    "failure_class":{"$ref":"registry_enums.v1.json#/$defs/failureClass"},
+    "stop_decision":{"$ref":"handoff_envelope.v2.json#/$defs/stopDecision"},
+    "continuation":{"$ref":"handoff_envelope.v2.json#/$defs/continuation"},
+    "next_action":{"$ref":"pipeline_verdict.v1.json#/$defs/action"},
+    "scope":{"type":"string"},"root_cause":{"type":"string"},"direction_provided":{"type":"boolean"}
+  }
+}

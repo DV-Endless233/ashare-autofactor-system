@@ -1,0 +1,9 @@
+{
+  "policy_version":"factor.budget_policy.v1",
+  "operator_parameter_attempts_max":2,
+  "same_root_cause_max":3,
+  "closed_directions_warning_threshold":5,
+  "round_wall_clock_seconds":null,
+  "round_token_budget":null,
+  "notes":"Null budgets are intentionally deployment policy placeholders; calibrate from historical runs and user cost limits."
+}

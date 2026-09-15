@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"factor.semantic_verdict.v1","type":"object","additionalProperties":false,
+  "required":["verdict","verdict_code","checks","next_action"],
+  "properties":{"verdict":{"enum":["pass","reject","conditional_pass","blocked"]},"verdict_code":{"type":"string"},"checks":{"type":"object","required":["economic_meaning","single_factor","duplication"]},"evidence_refs":{"type":"array","items":{"type":"string"}},"failure":{"anyOf":[{"type":"null"},{"$ref":"failure_review.v1.json#"}]},"next_action":{"$ref":"pipeline_verdict.v1.json#/$defs/action"}}
+}

@@ -1,0 +1,32 @@
+# macOS and Python cache
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Do not upload local databases
+databases/
+
+# Under project/util, upload only func.py
+project/util/*
+!project/util/func.py
+
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# Local/generated large data
+*.feather
+*.h5
+*.hdf5
+*.parquet
+*.csv
+*.zip
+*.tar.gz

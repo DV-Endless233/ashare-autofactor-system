@@ -1,0 +1,24 @@
+model:
+  default: REPLACE_WITH_MODEL
+  provider: REPLACE_WITH_PROVIDER
+  base_url: REPLACE_WITH_OPENAI_COMPATIBLE_BASE_URL
+  api_key: ${HERMES_API_KEY}
+providers: {}
+fallback_providers: []
+toolsets:
+  - hermes-cli
+  - kanban
+agent:
+  max_turns: 90
+terminal:
+  backend: local
+  cwd: ${PROJECT_ROOT}
+  timeout: 180
+  persistent_shell: false
+display:
+  personality: helpful
+  streaming: false
+  language: en
+memory:
+  memory_enabled: true
+  user_profile_enabled: true

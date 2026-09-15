@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"factor.operator_handoff.v1","type":"object","additionalProperties":false,
+  "required":["semantic_handoff_id","code_refs","factor_value_refs","backtest_refs","implementation_claim","metrics","attempt_summary"],
+  "properties":{"semantic_handoff_id":{"type":"string"},"code_refs":{"type":"array","minItems":1},"factor_value_refs":{"type":"array","minItems":1},"backtest_refs":{"type":"array","minItems":1},"implementation_claim":{"type":"object","required":["formula_matches_semantic_design"],"properties":{"formula_matches_semantic_design":{"const":true}},"additionalProperties":true},"metrics":{"type":"object","required":["rankic_mean","rankic_ir","lsret","coverage"],"properties":{"rankic_mean":{"type":"number"},"rankic_ir":{"type":"number"},"lsret":{"type":"number"},"coverage":{"type":"number","minimum":0,"maximum":1},"windows":{"type":"array"}},"additionalProperties":true},"attempt_summary":{"type":"object"}}
+}

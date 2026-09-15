@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "factor.registry_enums.v1",
+  "title": "Generated Factor Registry Enums",
+  "$defs": {
+    "actionCode": {
+      "enum": [
+        "CHECKPOINT_AND_FIX_VALIDATION",
+        "CLOSE_DUPLICATE_DIRECTION_AND_SELECT_NEW_SEMANTIC_DIRECTION",
+        "EXPAND_OUT_OF_SAMPLE_VALIDATION",
+        "PROMOTE_TO_FACTOR_LIBRARY",
+        "PROMOTE_TO_HUMAN_REVIEW",
+        "RECONCILE_AND_RETRY",
+        "REQUEST_FAILURE_REVIEW",
+        "REQUEST_PIPELINE_REVIEW",
+        "REQUEST_SEMANTIC_REVIEW",
+        "REQUEST_VALID_EVALUATOR_VERDICT",
+        "RESTART_SEMANTIC_DIRECTION",
+        "RESUME_AFTER_DATA_READY",
+        "RETRY_AFTER_INFRA_RECOVERY",
+        "RETRY_BACKTEST",
+        "RETRY_OPERATOR_IMPLEMENTATION",
+        "RETRY_OPERATOR_WITH_ALTERNATE_FIELD",
+        "RETRY_OPERATOR_WITH_PARAMETER_SET",
+        "START_OPERATOR_BUILD",
+        "WAIT_FOR_USER_RESTART"
+      ]
+    },
+    "failureClass": {
+      "enum": [
+        "accounting_mapping_error",
+        "backtest_execution_failed",
+        "backtest_metric_fail",
+        "cancelled_by_user",
+        "data_coverage_fail",
+        "data_dependency_blocked",
+        "direction_dead_end",
+        "economic_meaning_changed",
+        "evaluator_insufficient",
+        "implementation_error",
+        "infrastructure_api",
+        "kanban_or_db_error",
+        "overfit_suspected",
+        "semantic_duplicate",
+        "semantic_invalid"
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"factor.human_review_result.v1",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","round_id","candidate_ref","decision","reviewer","reviewed_at"],
+  "properties":{
+    "schema_version":{"const":"factor.human_review_result.v1"},
+    "round_id":{"type":"string","pattern":"^R[0-9]+$"},
+    "candidate_ref":{"type":"string"},
+    "decision":{"enum":["approved","rejected","needs_changes"]},
+    "reviewer":{"type":"string","minLength":1},
+    "reviewed_at":{"type":"string","format":"date-time"},
+    "reasons":{"type":"array","items":{"type":"string"}},
+    "required_changes":{"type":"array","items":{"type":"string"}},
+    "factor_library_entry":{"type":["object","null"]}
+  }
+}

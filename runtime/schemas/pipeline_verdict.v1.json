@@ -1,0 +1,6 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"factor.pipeline_verdict.v1","type":"object","additionalProperties":false,
+  "required":["verdict","verdict_code","checks","next_action"],
+  "properties":{"verdict":{"enum":["pass","reject","conditional_pass","blocked"]},"verdict_code":{"type":"string"},"checks":{"type":"object"},"evidence_refs":{"type":"array","items":{"type":"string"}},"failure":{"anyOf":[{"type":"null"},{"$ref":"failure_review.v1.json#"}]},"next_action":{"$ref":"#/$defs/action"},"rationale":{"type":"string"}},
+  "$defs":{"action":{"type":"object","additionalProperties":false,"required":["action_code","target_profile","target_phase"],"properties":{"action_code":{"$ref":"registry_enums.v1.json#/$defs/actionCode"},"target_profile":{"enum":["default","dvcoder","evaluator"]},"target_phase":{"type":"string"},"constraints":{"type":"array","items":{"type":"string"}},"max_attempts":{"type":["integer","string"],"minimum":0}}}}
+}

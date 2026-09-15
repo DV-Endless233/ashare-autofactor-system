@@ -1,0 +1,37 @@
+{
+  "policy_version": "factor.phase_transitions.v2",
+  "phase_result_protocol": {
+    "semantic_design": [
+      {"result_code":"SEMANTIC_PACKAGE_READY","meaning":"语义设计、变量映射、查重和数据可用性材料齐全","next_action":"REQUEST_SEMANTIC_REVIEW"},
+      {"result_code":"SEMANTIC_PACKAGE_INCOMPLETE","meaning":"材料不齐，不能提交审查","next_action":"CHECKPOINT_AND_FIX_VALIDATION"}
+    ],
+    "semantic_pre_review": [
+      {"result_code":"SEMANTIC_PASS","meaning":"语义、单因子和查重通过","next_action":"START_OPERATOR_BUILD"},
+      {"result_code":"SEMANTIC_REJECT","meaning":"语义或查重不通过","next_action":"RESTART_SEMANTIC_DIRECTION"},
+      {"result_code":"SEMANTIC_REVIEW_INVALID","meaning":"evaluator 输出不完整或不可验证","next_action":"REQUEST_VALID_EVALUATOR_VERDICT"}
+    ],
+    "operator_build": [
+      {"result_code":"ECONOMIC_MEANING_CHANGED","meaning":"实现改变了已审经济学含义","next_action":"RESTART_SEMANTIC_DIRECTION"},
+      {"result_code":"BACKTEST_EXECUTION_FAILED","meaning":"回测中途执行失败，实现产物仍可复用","next_action":"RETRY_BACKTEST"},
+      {"result_code":"METRICS_PASS","meaning":"回测指标满足进入 pipeline_review 的条件","next_action":"REQUEST_PIPELINE_REVIEW"},
+      {"result_code":"METRICS_FAIL_PARAMETER_ATTEMPT_PASS","meaning":"初始指标不通过，但有限参数尝试达到进入复审条件","next_action":"REQUEST_PIPELINE_REVIEW"},
+      {"result_code":"METRICS_FAIL_PARAMETER_ATTEMPT_FAIL","meaning":"指标不通过且有限参数尝试失败或 plateau","next_action":"RESTART_SEMANTIC_DIRECTION"},
+      {"result_code":"OPERATOR_ARTIFACT_INVALID","meaning":"代码、因子值、metrics 或 handoff 不完整/不可验证","next_action":"CHECKPOINT_AND_FIX_VALIDATION"}
+    ],
+    "pipeline_review": [
+      {"result_code":"PIPELINE_PASS","meaning":"全链路审查通过，可进入人工终审","next_action":"PROMOTE_TO_HUMAN_REVIEW"},
+      {"result_code":"PIPELINE_REJECT","meaning":"根据共用 failure_class 进行回流","next_action":"USE_SHARED_FAILURE_POLICY"},
+      {"result_code":"PIPELINE_REVIEW_INVALID","meaning":"evaluator 输出不完整或不可验证","next_action":"REQUEST_VALID_EVALUATOR_VERDICT"}
+    ],
+    "failure_review": [
+      {"result_code":"FAILURE_CLASS_CONFIRMED","meaning":"失败分类、停止范围、继续资格和动作已明确","next_action":"USE_SHARED_FAILURE_POLICY"},
+      {"result_code":"FAILURE_REPORT_INVALID","meaning":"失败证据或归因不完整","next_action":"CHECKPOINT_AND_FIX_VALIDATION"}
+    ],
+    "human_review": [
+      {"result_code":"HUMAN_APPROVED","meaning":"人工终审通过，允许正式入库","next_action":"PROMOTE_TO_FACTOR_LIBRARY"},
+      {"result_code":"HUMAN_REJECTED","meaning":"人工终审不通过，候选回流研究","next_action":"RESTART_SEMANTIC_DIRECTION"},
+      {"result_code":"HUMAN_NEEDS_CHANGES","meaning":"人工要求具体修改后重新进入闭环","next_action":"RESTART_SEMANTIC_DIRECTION"}
+    ]
+  },
+  "terminal_statuses": ["completed","rejected","blocked.infrastructure","blocked.data","cancelled","aborted","budget_limited"]
+}
